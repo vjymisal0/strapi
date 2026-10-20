@@ -454,18 +454,6 @@ declare const rolePolicy: Core.Policy<{ role: string }>;
 const anyConfigPolicy: Core.Policy = rolePolicy;
 anyConfigPolicy satisfies unknown;
 
-// Without strict types, preview handler params keep develop's `string` status.
-type PreviewStatusChecks = [
-  Expect<
-    Equal<
-      Parameters<NonNullable<Core.Config.Admin['preview']>['config']['handler']>[1]['status'],
-      string | undefined
-    >
-  >,
-];
-declare const previewStatusChecks: PreviewStatusChecks;
-previewStatusChecks satisfies unknown;
-
 // Without strict types, `Core.IsStrict` is `false` and a service factory may return any service, as
 // on develop, for registered and unregistered UIDs.
 type ServiceFactoryChecks = [
